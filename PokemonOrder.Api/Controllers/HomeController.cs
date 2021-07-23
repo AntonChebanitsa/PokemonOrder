@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PokemonOrder.Models;
-using System.Diagnostics;
+using PokemonOrder.Api.Models;
 
-namespace PokemonOrder.Controllers
+namespace PokemonOrder.Api.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,7 +15,8 @@ namespace PokemonOrder.Controllers
         }
 
         public IActionResult Index()
-        {
+        { 
+            RedirectToAction("Form", "Order");
             return View();
         }
 

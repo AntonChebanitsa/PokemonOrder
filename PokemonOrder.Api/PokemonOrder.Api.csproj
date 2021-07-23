@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PokemonOrder.Core\PokemonOrder.DAL.csproj" />
     <ProjectReference Include="..\PokemonOrder.Services\PokemonOrder.Services.csproj" />
   </ItemGroup>
 

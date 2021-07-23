@@ -1,4 +1,4 @@
-namespace PokemonOrder.Models
+namespace PokemonOrder.Api.Models
 {
     public class ErrorViewModel
     {

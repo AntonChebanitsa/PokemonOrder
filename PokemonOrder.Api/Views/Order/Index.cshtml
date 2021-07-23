@@ -1,0 +1,8 @@
+﻿@model IEnumerable<PokemonOrder.Dto.CustomerDto>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        await Html.RenderPartialAsync("OrderPartial", item);
+    }
+</div>

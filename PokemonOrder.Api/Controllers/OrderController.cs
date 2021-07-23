@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PokemonOrder.Models;
-using PokemonOrder.Services;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using PokemonOrder.Api.Models;
+using PokemonOrder.Services;
 
-namespace PokemonOrder.Controllers
+namespace PokemonOrder.Api.Controllers
 {
     public class OrderController : Controller
     {
@@ -12,6 +13,13 @@ namespace PokemonOrder.Controllers
         public OrderController(ICustomerService customerService)
         {
             _customerService = customerService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var customers = await _customerService.GetAllCustomers();
+            
+            return View(customers);
         }
 
         public IActionResult Form()
@@ -28,7 +36,7 @@ namespace PokemonOrder.Controllers
             {
                 await _customerService.PlaceOrder(model.Mail, model.Name, model.PhoneNumber);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Order");
             }
 
             return BadRequest();

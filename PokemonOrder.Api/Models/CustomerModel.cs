@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PokemonOrder.Models
+namespace PokemonOrder.Api.Models
 {
     public class CustomerModel
     {

@@ -5,6 +5,7 @@ using PokemonOrder.DAL.Entities;
 using PokemonOrder.Dto;
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace PokemonOrder.Services
@@ -62,6 +63,8 @@ namespace PokemonOrder.Services
                 NumberOfOrders = FIRST_ORDER,
                 PhoneNumber = customer.PhoneNumber
             }));
+
+            SendEmail(customer.Mail);
         }
 
         private async Task EditCustomer(CustomerDto customer)
@@ -76,6 +79,31 @@ namespace PokemonOrder.Services
                 NumberOfOrders = newNumberOfOrders,
                 PhoneNumber = customer.PhoneNumber
             }));
+
+            SendEmail(customer.Mail);
+        }
+
+        public void SendEmail(string email)
+        {
+            try
+            {
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+
+                smtpClient.Credentials = new System.Net.NetworkCredential("dersalaga@gmail.com", "VoNn0IHD");
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
+
+                var mail = new MailMessage();
+                mail.From = new MailAddress("dersalaga@gmail.com", "PokemonDealer");
+                mail.To.Add(new MailAddress(email));
+                mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
+
+                smtpClient.Send(mail);
+            }
+            catch 
+            {
+                return;
+            }
         }
     }
 }
